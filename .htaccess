@@ -1,0 +1,3 @@
+Options +SymLinksIfOwnerMatch
+RewriteEngine On
+RewriteRule ^([0-9]+)$ event.php?id=$1
