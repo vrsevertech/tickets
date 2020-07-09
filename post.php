@@ -17,7 +17,7 @@ try {
         if (!$itStaken AND $needIt) { $fail = $selections->setClickTime(); } else 
         if (!$itStaken AND $dropIt) { $fail = $selections->unSetClickTime(); } else 
         if ($itStaken AND $needIt AND isset($phone)) { $fail = $selections->addToQueue($phone); } else 
-        if ($_POST['what'] == 'check');
+        if ($_POST['what'] == 'check') {} else exit('что делать');
     }
     $selections->pdo->commit();
 } catch (Exception $e) {

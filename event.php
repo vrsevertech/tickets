@@ -657,25 +657,28 @@ $.each(tickets, function(key,ticket) {
 
 //selections
 
-$(document).ajaxError(function(event, request, settings) {
-    $('p.d').text('!error: ' + request.status);
-    errPlace = new URLSearchParams(settings.data).get('place');
+$( document ).ajaxError( function ( event, jqXHR, settings, thrownError ) {
+    $('p.d').text('!' + jqXHR.statusText + ': ' + jqXHR.status + ' ' + thrownError);
+});
+
+function unClick(request) {
+    errPlace = new URLSearchParams(request).get('place');
     if ($('#' + errPlace).hasClass('preselected')) $('#' + errPlace).toggleClass('preselected noselected');
     if ($('#' + errPlace).hasClass('unselected')) $('#' + errPlace).toggleClass('unselected selected');
-});
+}
 
 function preAvailablesGet() {
     preAvailables = [];
-    $(".noselected").each(function(i){
-        preAvailables.push($(this).attr("id"));
-    });
     $(".unselected").each(function(i){
         preAvailables.push($(this).attr("id"));
     });
-    $(".selected").each(function(i){
+    $(".noselected").each(function(i){
         preAvailables.push($(this).attr("id"));
     });
     $(".preselected").each(function(i){
+        preAvailables.push($(this).attr("id"));
+    });
+    $(".selected").each(function(i){
         preAvailables.push($(this).attr("id"));
     });
     $(".prolselected").each(function(i){
@@ -746,7 +749,8 @@ $('td').on('click', function() {
         success: function(response){
             console.log((Date.now()-startDate)/1000 + ' пришло: ' + response); //deb
             if (response == 'несколько вкладок') $('.message-wrapper').css('display','flex');
-            try { response = jQuery.parseJSON(response); } catch (e) { $('p.d').text(response); /*//deb*/ }
+            try { response = jQuery.parseJSON(response); } 
+            catch (e) { $('p.d').text(response); /*//deb*/ unClick(this.data); }
             place = response['place'];
 
             if ($('#' + place).hasClass('preselected') && response['itSchanged']) 
@@ -772,18 +776,16 @@ $('td').on('click', function() {
                             console.log((Date.now()-startDate)/1000 + ' пришло: ' + response); //deb
                             if (response == 'несколько вкладок')
                                 $('.message-wrapper').css('display','flex');
-                            //$('p.d').text(response);
-                            response = jQuery.parseJSON(response);
-                            //if (response['fail'] == 'занято другим') alert('возможно, заснуло устройство, место занято');
+                            try { response = jQuery.parseJSON(response); } 
+                            catch (e) { $('p.d').text(response); /*//deb*/ }
+                            //if (response['fail'] == 'занято другим') alert('место занято');
                             if (response['itSchanged']) 
-                                alert(
-                                    'возможно, устройство засыпало или пропадал интернет, место' 
-                                    + response['place'] +'занято'
-                                );
+                                alert('возможно, устройство засыпало или пропадал интернет, место ' 
+                                    + response['place'] + ' занято');
                             refresh(response['changes']);
                         },
                         complete: function(){
-                            $('#' + place).toggleClass('selected prolselected');
+                            $('#' + new URLSearchParams(this.data).get('place')).toggleClass('selected prolselected');
                         }
                     })
 //↑3 ajax end prolong (setInterval)..........
@@ -814,13 +816,18 @@ $('td').on('click', function() {
                                 console.log((Date.now()-startDate)/1000 + ' пришло: ' + response); //deb
                                 if (response == 'несколько вкладок')
                                     $('.message-wrapper').css('display','flex');
-                                //$('p.d').text(response);
+                                try { response = jQuery.parseJSON(response); } 
+                                catch (e) { $('p.d').text(response); /*//deb*/ }
+                                refresh(response['changes']);
                             }
 //↑2 ajax end inQueue.........................
                         });
                     }
                 }
             }, 10);
+        },
+        error: function () {
+            unClick(this.data);
         }
     })
 //↑1 ajax end click............................
