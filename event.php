@@ -789,7 +789,7 @@ $('td').on('click', function() {
                         }
                     })
 //↑3 ajax end prolong (setInterval)..........
-                }, 900000, place);
+                }, 1000, place);
             }
             $('p.listselected').text(order);
             if ($('#' + place).hasClass('unselected')) {
