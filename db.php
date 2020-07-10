@@ -276,6 +276,7 @@ class orderProcessing extends db
 
     function go($eventId, $phone, $name, $order)
     {
+        if (!is_numeric($phone)) exit('не цифры');
         $order = explode(',', $order);
         if (!count($order)) exit('пустой заказ');
         $in = str_repeat('?,', count($order) - 1) . '?';
