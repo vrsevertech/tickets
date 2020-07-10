@@ -629,7 +629,7 @@ $display = new display($eventId);
 <p> 20.10.2020 18:30</p>
 <form action="" method="POST" style="display:none">
 <p class="listselected"></p>
-<p>К оплате (на кассе): </p>
+<p>К оплате (на кассе): </p><p id="price"></p>
 <input required placeholder="Ваш телефон" type="number" name="phone" id="phone"><br>
 <input required placeholder="Ваше ім'я" type="text" name="name"><br>
 <input type="hidden" name="order" id="order">
@@ -664,7 +664,11 @@ $( document ).ajaxError( function ( event, jqXHR, settings, thrownError ) {
 function unClick(request) {
     errPlace = new URLSearchParams(request).get('place');
     if ($('#' + errPlace).hasClass('preselected')) $('#' + errPlace).toggleClass('preselected noselected');
-    if ($('#' + errPlace).hasClass('unselected')) $('#' + errPlace).toggleClass('unselected selected');
+    if ($('#' + errPlace).hasClass('unselected')) {
+        $('#' + errPlace).toggleClass('unselected selected');
+        order.push(errPlace);
+        price += tickets[errPlace]['price'];
+    }
 }
 
 function preAvailablesGet() {
@@ -720,6 +724,7 @@ function responseDeb(response) { //deb!
     return //deb!
 } //deb!
 
+let price = 0;
 let order = [];
 let prolong = [];
 $('td').on('click', function() {
@@ -729,6 +734,8 @@ $('td').on('click', function() {
 
     if ($(this).hasClass('selected')) {
         what = '&what=drop';
+        price -= tickets[place]['price'];
+        $('#price').text(price);
         order = jQuery.grep(order, function(value) {
             return value != place;
         });
@@ -759,6 +766,8 @@ $('td').on('click', function() {
 
             if ($('#' + place).hasClass('preselected')) {
                 if (!order.length) $('form').show();
+                price += tickets[place]['price'];
+                $('#price').text(price);
                 order.push(place);
                 $('#' + place).toggleClass('preselected selected');
                 prolong[place] = setInterval(function(place) {
