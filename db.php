@@ -23,7 +23,16 @@ class db
     }
 
     function __get($w) { switch ($w) { case 'whatIsTaken': return "
-        orderId IS NOT NULL 
+        (
+            orderId IS NOT NULL
+            AND
+            (
+                SELECT COUNT(*) 
+                FROM orders 
+                WHERE orders.orderId = tickets.orderId 
+                AND orders.status LIKE 'canceled%'
+            ) = 0
+        ) 
         OR 
         (
             (
