@@ -667,7 +667,7 @@ function unClick(request) {
     if ($('#' + errPlace).hasClass('unselected')) {
         $('#' + errPlace).toggleClass('unselected selected');
         order.push(errPlace);
-        price += tickets[errPlace]['price'];
+        price += tickets[errPlace-1]['price'];
     }
 }
 
@@ -734,7 +734,7 @@ $('td').on('click', function() {
 
     if ($(this).hasClass('selected')) {
         what = '&what=drop';
-        price -= tickets[place]['price'];
+        price -= tickets[place-1]['price'];
         $('#price').text(price);
         order = jQuery.grep(order, function(value) {
             return value != place;
@@ -766,7 +766,7 @@ $('td').on('click', function() {
 
             if ($('#' + place).hasClass('preselected')) {
                 if (!order.length) $('form').show();
-                price += tickets[place]['price'];
+                price += tickets[place-1]['price'];
                 $('#price').text(price);
                 order.push(place);
                 $('#' + place).toggleClass('preselected selected');
