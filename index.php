@@ -10,7 +10,7 @@ if(isset($_SESSION['ok'])) {
     unset($_SESSION['ok']);
 } 
 
-
+echo "."; //проверка разворачивается ли новая версия на сервере при пуше в гит
 
 require 'db_connection.php';
 $pdo = new PDO(

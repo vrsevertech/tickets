@@ -24,7 +24,7 @@ class db
 
     function __get($w) { switch ($w) { case 'whatIsTaken': return "
         (
-            orderId IS NOT NULL
+            tickets.orderId IS NOT NULL
             AND
             (
                 SELECT COUNT(*) 
@@ -36,15 +36,15 @@ class db
         OR 
         (
             (
-                sessId IS NULL 
-                OR sessId != '$this->sessId'
+                tickets.sessId IS NULL 
+                OR tickets.sessId != '$this->sessId'
             )
             AND
             (
                 (
 
-                    clickTime IS NOT NULL 
-                    AND UNIX_TIMESTAMP(NOW())-UNIX_TIMESTAMP(clickTime)<1200
+                    tickets.clickTime IS NOT NULL 
+                    AND UNIX_TIMESTAMP(NOW())-UNIX_TIMESTAMP(tickets.clickTime)<1200
                 ) 
                 OR 
                 (
