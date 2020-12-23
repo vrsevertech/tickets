@@ -10,8 +10,6 @@ if(isset($_SESSION['ok'])) {
     unset($_SESSION['ok']);
 } 
 
-echo "string";
-
 require 'db_connection.php';
 $pdo = new PDO(
     "mysql:host=$host;dbname=$dbname;charset=utf8", 
