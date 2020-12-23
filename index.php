@@ -10,7 +10,7 @@ if(isset($_SESSION['ok'])) {
     unset($_SESSION['ok']);
 } 
 
-echo "URAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+echo "1";
 
 require 'db_connection.php';
 $pdo = new PDO(
