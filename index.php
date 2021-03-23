@@ -27,7 +27,8 @@ foreach ($events as $event) {
 	echo '<a href="./';
 	echo $event['eventId'];
 	echo '">';
-	echo $event['eventName'] . ' ' . $event['eventDate'];
+    echo $event['eventName'] . ' ';
+    //echo $event['eventDate'];
 	echo '</a>';
 	echo '<br>';
 }
