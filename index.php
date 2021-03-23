@@ -32,5 +32,6 @@ foreach ($events as $event) {
 	echo '<br>';
 }
 ?>
-<br><br><br><br><br><br><br>
+<!--<br><br><br><a href="./result">Просмотреть список зарезервировавших</a>-->
+<br><br><br><br><br>
 <?php //phpinfo(); ?>
