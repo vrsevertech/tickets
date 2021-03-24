@@ -6,7 +6,7 @@ if(isset($_SESSION['ok'])) {
         "<br>номер заказа: " . $_SESSION['ok']['orderId'] . 
         "<br>зарезервировано: " . $_SESSION['ok']['order'] . 
         "<br>событие: " . $_SESSION['ok']['eventId'] .
-        "<br>";
+        "<br><br>";
     unset($_SESSION['ok']);
 } 
 
@@ -27,8 +27,8 @@ foreach ($events as $event) {
 	echo '<a href="./';
 	echo $event['eventId'];
 	echo '">';
-    echo $event['eventName'] . ' ';
-    //echo $event['eventDate'];
+    //echo $event['eventDate'] . ' ';
+    echo $event['eventName'];
 	echo '</a>';
 	echo '<br>';
 }

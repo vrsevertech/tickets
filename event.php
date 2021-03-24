@@ -52,7 +52,7 @@ $display = new display($eventId);
 
     td {
         width: 33px;
-        height: 30px;
+        height: 28px;
         font-size: 22px;
         text-align: center;
         color: #fff;
@@ -101,7 +101,7 @@ $display = new display($eventId);
     }
     
     input {
-        width: 200px;
+        width: 300px;
         height: 70px;
         font-size: 45px;
     }
@@ -130,10 +130,14 @@ $display = new display($eventId);
 <body>
 <pre><p name="//deb" class="d"></p></pre>
 <div class="message-wrapper">
-    <div class="message">
-        <h2>Вы начали работу в другой вкладке. Эту можно закрыть.</h2>
-    </div>
+  <div class="message">
+    <h2>Вы начали работу в другой вкладке. Эту можно закрыть.</h2>
+  </div>
 </div>
+
+<? echo $display->distinctPricesHTML ?>
+<img style="width:45px" src="k.svg"> => <a href="karabas.com">karabas.com</a>
+
 <table>
   <tr>
     <td id="1" class="noselected">1</td>
@@ -622,14 +626,11 @@ $display = new display($eventId);
 
   </tr>
 </table>
-<? echo $display->distinctPricesHTML ?><br>
-<img style="width:42px" src="k.svg"> => <a href="karabas.com">karabas.com</a>
-<p>Выбрано: </p>
-<p><? echo 'Тестовое событие, '; ?></p>
-<p> 20.10.2020 18:30</p>
+<h1 style="line-height: 0">Выбрано: </h2>
+<h2><? echo $display->eventName; //echo ' (Дата: ' . $display->eventDate . ')';?></h2>
 <form action="" method="POST" style="display:none">
-<p class="listselected"></p>
-<p>К оплате (на кассе): </p><p id="price"></p>
+Места (порядковые номера): <i class="listselected"></i><br><br>
+К оплате (на кассе): <b id="price"></b><br><br>
 <input required placeholder="Ваш телефон" type="number" name="phone" id="phone"><br>
 <input required placeholder="Ваше ім'я" type="text" name="name"><br>
 <input type="hidden" name="order" id="order">
@@ -637,6 +638,7 @@ $display = new display($eventId);
 <input type="hidden" name="eventId" value="<? echo $eventId; ?>">
 <button name="do">В резерв!</button>
 </form>
+
 <script>
 let startDate = Date.now(); //deb
 let tabId = '&tabId=' + <? echo $_SESSION['ev'.$eventId]['tabId']; ?>;
@@ -800,7 +802,7 @@ $('td').on('click', function() {
 //↑3 ajax end prolong (setInterval)..........
                 }, 900000, place);
             }
-            $('p.listselected').text(order);
+            $('.listselected').text(order);
             if ($('#' + place).hasClass('unselected')) {
                 $('#' + place).toggleClass('unselected noselected');
                 clearInterval(prolong[place]);

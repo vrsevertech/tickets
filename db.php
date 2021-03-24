@@ -17,7 +17,7 @@ class db
             $login, $password, [
             PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-            PDO::ATTR_EMULATE_PREPARES   => false, 
+            PDO::ATTR_EMULATE_PREPARES   => false,
         ]);
         $this->sessId = session_id();
     }
@@ -67,6 +67,13 @@ class display extends db
     function __construct($eventId)
     {
         parent::__construct();
+
+        $aboutEvent = $this->pdo->prepare('SELECT eventName,eventDate FROM events WHERE eventId=?');
+        $aboutEvent->execute([$eventId]);
+        $aboutEvent = $aboutEvent->fetch();
+        $this->eventName = $aboutEvent['eventName'];
+        $this->eventDate = $aboutEvent['eventDate'];
+
         $tickets = $this->pdo->prepare("
             SELECT place,price,karabas,($this->whatIsTaken) as taken FROM tickets WHERE eventId=?");
         $tickets->execute([$eventId]);
@@ -83,8 +90,8 @@ class display extends db
         foreach ($distinctPrices->fetchAll() as $distinctPrice) {
             $background = $this->colors[$keyColor];
             $color = $this->color_inverse($this->colors[$keyColor]);
-            $this->distinctPricesHTML .= '<span 
-                style="background: ' . $background . ';color: ' . $color . '">' . $distinctPrice['price'] . '</span>';
+            $this->distinctPricesHTML = '<span style="background: ' . $background . ';color: ' . $color . '">' 
+                . '₴' . $distinctPrice['price'] . '</span>' . $this->distinctPricesHTML;
             foreach ($this->tickets as &$ticket) {
                 if ($ticket['price'] != $distinctPrice['price']) continue;
                 $ticket['color']['background'] = $background;
@@ -93,6 +100,11 @@ class display extends db
             //print_r($prices);
             $keyColor += $step;
         }
+    }
+
+    function aboutEvent() 
+    {
+
     }
 
     function tickets()
