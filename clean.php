@@ -11,3 +11,5 @@ $pdo = new PDO(
 $pdo->query("UPDATE `tickets` SET `orderId`=NULL,`clickTime`=NULL,`sessId`=NULL")->execute();
 $pdo->query("DELETE FROM `queue`")->execute();
 $pdo->query("DELETE FROM `orders`")->execute();
+
+echo "Готово";
