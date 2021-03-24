@@ -1,4 +1,4 @@
-<?= "Телефон: " . $phone['phone'] . "<br>"; ?>
+<?= "Контакт: " . $phone['phone'] . "<br>"; ?>
 <?= $phone['clientName']; ?>
 <?= $phone['note']; ?>
 

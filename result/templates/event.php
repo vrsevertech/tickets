@@ -1,5 +1,6 @@
-<?= "Событие: " . $key . " (" . $event['eventName'] . ") "; ?>
-<?= "Дата: " . $event['eventDate'] . " "; ?>
+<?= "Событие: " . $event['eventName']; ?>
+<?= //" (" . $key . ") "; ?>
+<?= //"Дата: " . $event['eventDate'] . " "; ?>
 
 <?php
 
