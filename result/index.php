@@ -37,13 +37,13 @@ $milliseconds = round(microtime(true) * 1000);
 
 echo '<div style="margin: 0px 0px 0px 20px">';
 
-echo "<b> Заказы: </b> ";
+echo "<h1> Заказы: </h1> ";
 foreach ($arr[0] as $phone)
 	include 'templates/client.php';
-
+echo "<h1> Освободились: </h1> ";
 foreach ($arr[1] as $phone)
 	include 'templates/client.php';
-
+echo "<h1> В очереди: </h1> ";
 foreach ($arr[2] as $phone)
 	include 'templates/client.php';
 echo '</div>';
