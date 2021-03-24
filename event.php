@@ -136,7 +136,7 @@ $display = new display($eventId);
 </div>
 
 <? echo $display->distinctPricesHTML ?>
-<img style="width:50px" src="k.svg"> => <a href="karabas.com">karabas.com</a>
+<!-- <img style="width:50px" src="k.svg"> => <a href="karabas.com">karabas.com</a> -->
 
 <table>
   <tr>
