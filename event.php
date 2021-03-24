@@ -626,7 +626,7 @@ $display = new display($eventId);
 
   </tr>
 </table>
-<h1 style="line-height: 0">Выбрано: </h2>
+<h1>Выбрано: </h2>
 <h2><? echo $display->eventName; //echo ' (Дата: ' . $display->eventDate . ')';?></h2>
 <form action="" method="POST" style="display:none">
 Места (порядковые номера): <i class="listselected"></i><br><br>
