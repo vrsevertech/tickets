@@ -52,4 +52,4 @@ foreach ($arr[2] as $phone)
 	include 'templates/client.php';
 echo '</div>';
 
-echo " рендер: "; echo round(microtime(true) * 1000) - $milliseconds;
+//echo " рендер: "; echo round(microtime(true) * 1000) - $milliseconds;

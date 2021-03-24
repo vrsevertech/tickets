@@ -33,6 +33,8 @@ foreach ($events as $event) {
 	echo '<br>';
 }
 ?>
-<!--<br><br><br><a href="./result">Просмотреть список зарезервировавших</a>-->
+<br><br><br><a href="./result">Просмотреть список зарезервировавших</a>
+<br><a href="./clean">Очистить список зарезервировавших</a>
+
 <br><br><br><br><br>
 <?php //phpinfo(); ?>
