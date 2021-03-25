@@ -801,7 +801,7 @@ $('td').on('click', function() {
 //↑3 ajax end prolong (setInterval)..........
                 }, 900000, place);
             }
-            $('.listselected').text(order);
+            $('.listselected').text(order.toString().replaceAll(',',', '));
             if ($('#' + place).hasClass('unselected')) {
                 $('#' + place).toggleClass('unselected noselected');
                 clearInterval(prolong[place]);

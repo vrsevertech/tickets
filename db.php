@@ -323,7 +323,7 @@ class orderProcessing extends db
             'phone' => $phone, 
             'name' => $name, 
             'orderId' => $orderId, 
-            'order' => implode(',', $order),
+            'order' => implode(', ', $order),
         ]; 
     }
 }
