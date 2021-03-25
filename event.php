@@ -97,7 +97,6 @@ $display = new display($eventId);
     span {
         font-size: 35px;
         border: 3px solid #fff;
-        float: left;
     }
     
     input {
@@ -107,7 +106,7 @@ $display = new display($eventId);
     }
     
     button {
-        width: 250px;
+        width: 275px;
         height: 70px;
         font-size: 45px;
     }
@@ -135,7 +134,7 @@ $display = new display($eventId);
   </div>
 </div>
 
-<? echo $display->distinctPricesHTML ?><br><br>
+<? echo $display->distinctPricesHTML ?>
 <!-- <img style="width:50px" src="k.svg"> => <a href="karabas.com">karabas.com</a> -->
 
 <table>

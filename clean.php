@@ -12,4 +12,4 @@ $pdo->query("UPDATE `tickets` SET `orderId`=NULL,`clickTime`=NULL,`sessId`=NULL"
 $pdo->query("DELETE FROM `queue`")->execute();
 $pdo->query("DELETE FROM `orders`")->execute();
 
-echo "Готово";
+echo "<h1>Готово</h1>";
