@@ -18,14 +18,14 @@ if (isset($phone["events"][0])) {
 }
 
 if (isset($phone["events"][1])) {
-	if ($orderSection) echo "Освободились: ";
-	if ($orderSection) echo '<div style="margin: 0px 0px 0px 35px">';
+	echo "Освободились: ";
+	echo '<div style="margin: 0px 0px 0px 35px">';
 
 	foreach ($phone["events"][1] as $key => $event) {
 		include 'event.php';
 	}
 
-	if ($orderSection) echo '</div>';
+	echo '</div>';
 }
 
 if (isset($phone["events"][2])) {

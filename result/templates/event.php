@@ -21,7 +21,7 @@ if (isset($event['deal'][1])) {
 	echo "<br>";
 }
 if (isset($event['deal'][2])) {
-	if (!$eventQueue) echo "В очереди: ";
+	if (!$queueSection) echo "В очереди: ";
 	echo implode(', ', $event['deal'][2]);
 }
 

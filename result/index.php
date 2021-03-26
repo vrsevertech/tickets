@@ -34,14 +34,12 @@ $arr[$v['priority']][$v['phone']]["events"][$v['dealPriority']][$v['eventId']]["
 //echo " в джосн: "; echo round(microtime(true) * 1000) - $milliseconds;
 $milliseconds = round(microtime(true) * 1000);
 
-$orderSection = true;
 echo "<h1> Заказы: </h1> ";
 echo '<div style="margin: 0px 0px 0px 20px">';
 foreach ($arr[0] as $phone) {
 	include 'templates/client.php';
 }
 echo '</div>';
-$orderSection = false;
 
 echo "<h2> Освободились: </h2> ";
 echo '<div style="margin: 0px 0px 0px 20px">';
