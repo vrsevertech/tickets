@@ -253,11 +253,11 @@ class selections extends db
         $p->execute([$this->eventId,$this->place,$phone]);
         $queueClear = ($p->fetch()['COUNT(*)'] === 0);
 
-        $q = 'SELECT COUNT(*) FROM tickets WHERE eventId=? AND place=? 
-                AND orderId=(SELECT orderId FROM orders WHERE phone=?)';
+        $q = 'SELECT phone FROM orders 
+                WHERE orderId=(SELECT orderId FROM tickets WHERE eventId=? AND place=?)';
         $p = $this->pdo->prepare($q);
-        $p->execute([$this->eventId,$this->place,$phone]);
-        $ordersClear = ($p->fetch()['COUNT(*)'] === 0);
+        $p->execute([$this->eventId,$this->place]);
+        $ordersClear = ($p->fetch()['phone'] !== $phone);
 
         return $queueClear && $ordersClear;
     }
