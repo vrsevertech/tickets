@@ -630,7 +630,7 @@ $display = new display($eventId);
 <form action="" method="POST" style="display:none">
 Места (порядковые номера): <i class="listselected"></i><br><br>
 К оплате (на кассе): <b id="price"></b><br><br>
-<input required placeholder="Ваш телефон" type="tel" autocomplete="on" name="phone" id="phone"><br>
+<input required placeholder="Ваш телефон" type="number" autocomplete="on" name="phone" id="phone"><br>
 <input required placeholder="Ваше ім'я" type="text" name="name"><br>
 <input type="hidden" name="order" id="order">
 <input type="hidden" name="tabId" value="<? echo $_SESSION['ev'.$eventId]['tabId']; ?>">
