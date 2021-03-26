@@ -34,31 +34,28 @@ $arr[$v['priority']][$v['phone']]["events"][$v['dealPriority']][$v['eventId']]["
 //echo " в джосн: "; echo round(microtime(true) * 1000) - $milliseconds;
 $milliseconds = round(microtime(true) * 1000);
 
-$clientOrder = true;
+$orderSection = true;
 echo "<h1> Заказы: </h1> ";
 echo '<div style="margin: 0px 0px 0px 20px">';
 foreach ($arr[0] as $phone) {
 	include 'templates/client.php';
 }
 echo '</div>';
-$clientOrder = false;
+$orderSection = false;
 
-$clientFree = true;
 echo "<h2> Освободились: </h2> ";
 echo '<div style="margin: 0px 0px 0px 20px">';
 foreach ($arr[1] as $phone) {
 	include 'templates/client.php';
 }
 echo '</div>';
-$clientFree = false;
 
-$clientQueue = true;
+$queueSection = true;
 echo "<h3> В очереди: </h3> ";
 echo '<div style="margin: 0px 0px 0px 20px">';
 foreach ($arr[2] as $phone) {
 	include 'templates/client.php';
 }
 echo '</div>';
-$clientQueue = false;
 
 //echo " рендер: "; echo round(microtime(true) * 1000) - $milliseconds;
